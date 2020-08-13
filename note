@@ -1,0 +1,199 @@
+install django: pip install django
+
+from here django = dj
+
+create dj project: django-admin startproject projectname
+verify: python manage.py runserver
+browser: http://127.0.0.1:8000/
+
+create dj app: django-admin startapp appname
+add appname to installed apps in projectname/settings.py, as a string, "appname"
+
+add the urls of appname to urls in settings (if appname has no urls.py, create it):
+from django.urls import path, include, then add 
+path('appname/', include('appname.urls')) to the urlpatterns
+
+import the views into the urls: from . import views, into the new urls.py in appname.
+add, from django.urls import path
+create a list called urlpatterns, urlpatterns = []
+then add, path('', views.home(), name='home') into urlpatterns
+
+create view, home in views.py in appname as:
+from django.shortcuts import render, HttpResponse
+
+def home(request):
+    return HttpResponse("Home")
+    
+
+verify: python manage.py runserver
+browser: http://127.0.0.1:8000/appname/
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+
+add html
+
+in appname, mdkir templates, cd templates, mkdir appname, cd appname, touch login.html
+
+from django.shortcuts import render, HttpResponse
+
+def home(request):
+    return render(request, 'appname/login.html')
+    
+add to login.html
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        <h1>Login page</h1>
+    </body>
+</html>
+
+
+
+verify: python manage.py runserver
+browser: http://127.0.0.1:8000/appname/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+
+add static files (css, js, images, ..)
+
+in appname, mkdir static, cd static, mkdir css js img
+then add the css files into css, js into js and then images into images
+
+add static files to template (html): {% load static %} at the top in the html file as
+
+login.html
+<html>
+    <head>
+        <title>Login</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'appname/css/thiscss.css' %}">
+    </head>
+    <body>
+        <h1>Login page</h1>
+    </body>
+    
+    <script src="{% static 'appname/js/thatjs.js' %}"></script>
+</html>
+
+thiscss.css
+body {
+    background-color: #12ac4a;
+}
+
+
+verify: python manage.py runserver
+browser: http://127.0.0.1:8000/appname/
+
+
+
+
+----------------------------------------------------------------------------------------
+
+Jinja template
+
+{{ var }}
+
+
+{% for var in iterable %}
+    do something
+{% endfor %}
+
+
+{% if predicate1 %}
+    do something
+{% elif predicate2 %}
+    do another thing
+{% else %}
+    do default
+{% endif %}
+
+{% load static %}
+
+{% include str_path_to_file %}
+
+{% extends str_path_to_file %}
+
+{% block section %} {% endblock %}
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+
+django manager
+
+python manage.py makemigrations [appname]
+python manage.py migrate
+python manage.py shell
+python manage.py createsuperuser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

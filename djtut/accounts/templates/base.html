@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>{% block title %} {% endblock %}</title>
+        
+         {% load static %}
+        <link rel="stylesheet" href="{% static 'accounts/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'accounts/css/custom.css' %}">
+    </head>
+        <body>
+        {% block body %} {% endblock %}
+        </body>
+    
+    <script src="{% static 'accounts/js/bootstrap.min.js' %}"></script>
+</html>
